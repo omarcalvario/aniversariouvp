@@ -804,7 +804,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 
 /* ──────────────────────────────
-   FICHAS FILOSOFÍA / NUESTRA ESENCIA
+   PRINCIPIOS / NUESTRA ESENCIA — UI/UX
 ────────────────────────────── */
 .filosofia-interactiva {
   max-width: 1200px;
@@ -821,164 +821,242 @@ button { font-family: inherit; cursor: pointer; border: none; }
   margin-bottom: 32px;
 }
 
-.filosofia-intro .section-title {
-  max-width: 560px;
-}
+.filosofia-intro .section-title { max-width: 560px; }
 
-.filosofia-grid {
+.principios-layout {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 14px;
+  grid-template-columns: 340px 1fr;
+  gap: 20px;
+  align-items: stretch;
 }
 
-.filosofia-card {
+.principios-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.principios-tab {
+  width: 100%;
   background: var(--bg2);
   border: 1px solid var(--gray3);
-  border-radius: var(--radius);
-  min-height: 210px;
-  padding: 24px;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  text-align: left;
+  color: var(--white);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
-.filosofia-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--grad-gold);
-  opacity: 0.9;
+.principios-tab:hover,
+.principios-tab:focus-visible {
+  transform: translateX(4px);
+  border-color: rgba(254,217,0,0.35);
+  background: rgba(254,217,0,0.04);
+  outline: none;
 }
 
-.filosofia-card:nth-child(1)::before { background: var(--pur2); }
-.filosofia-card:nth-child(2)::before { background: var(--red); }
-.filosofia-card:nth-child(3)::before { background: var(--gold); }
-.filosofia-card:nth-child(4)::before { background: var(--pur3); }
-.filosofia-card:nth-child(5)::before { background: var(--pur1); }
+.principios-tab[aria-selected="true"] {
+  border-color: rgba(254,217,0,0.5);
+  background: linear-gradient(135deg, rgba(254,217,0,0.12), rgba(146,44,236,0.1));
+  box-shadow: 0 14px 40px rgba(0,0,0,0.28);
+}
 
-.filosofia-card-icon {
-  width: 46px; height: 46px;
+.principios-tab-icon {
+  width: 42px; height: 42px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  margin-bottom: 18px;
-  background: rgba(254,217,0,0.08);
+  background: rgba(254,217,0,0.1);
+  font-size: 20px;
 }
 
-.filosofia-card h3 {
-  font-size: 18px;
+.principios-tab-title {
+  display: block;
+  font-size: 14px;
   font-weight: 900;
-  color: var(--white);
-  line-height: 1.15;
-  margin-bottom: 10px;
+  line-height: 1.2;
 }
 
-.filosofia-card-hint {
-  font-size: 12px;
-  font-weight: 700;
+.principios-tab-desc {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray2);
+  line-height: 1.35;
+}
+
+.principios-tab-arrow {
   color: var(--gold);
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
+  font-weight: 900;
+  opacity: 0.7;
 }
 
-.filosofia-card-content {
+.principios-panel-wrap {
+  background: linear-gradient(180deg, rgba(17,15,32,0.98), rgba(13,11,26,0.98));
+  border: 1px solid var(--gray3);
+  border-radius: var(--radius);
+  min-height: 420px;
+  padding: 34px;
+  position: relative;
+  overflow: hidden;
+}
+
+.principios-panel-wrap::before {
+  content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(13,11,26,0.98), rgba(7,5,17,0.98));
-  padding: 24px;
-  opacity: 0;
-  transform: translateY(12px);
+  background:
+    radial-gradient(ellipse 60% 50% at 90% 10%, rgba(254,217,0,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 0% 100%, rgba(146,44,236,0.12) 0%, transparent 70%);
   pointer-events: none;
-  transition: opacity 0.28s ease, transform 0.28s ease;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--gold) transparent;
 }
 
-.filosofia-card-content::-webkit-scrollbar { width: 5px; }
-.filosofia-card-content::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-
-.filosofia-card-content p,
-.filosofia-card-content li {
-  font-size: 12.5px;
-  color: var(--gray1);
-  line-height: 1.65;
-}
-
-.filosofia-card-content ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 0;
-  margin: 0;
-}
-
-.filosofia-card-content strong {
-  color: var(--gold);
-  font-weight: 800;
-}
-
-.filosofia-card-close {
+.principios-panel {
   display: none;
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+  animation: principioFade 0.28s ease both;
+}
+
+.principios-panel.active { display: block; }
+
+@keyframes principioFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.principios-panel-kicker {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: rgba(255,255,255,0.08);
+  gap: 8px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.principios-panel h3 {
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 18px;
+}
+
+.principios-panel p,
+.principios-panel li {
+  font-size: 15px;
+  color: var(--gray1);
+  line-height: 1.75;
+}
+
+.principios-panel ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.principios-panel li {
+  padding-left: 18px;
+  position: relative;
+}
+
+.principios-panel li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.principios-note {
+  margin-top: 24px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: rgba(254,217,0,0.08);
+  border: 1px solid rgba(254,217,0,0.16);
+  font-size: 13px !important;
+}
+
+.valores-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.valor-detail {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.valor-detail summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 13px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 900;
   color: var(--white);
-  font-size: 18px;
-  z-index: 4;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .filosofia-card:hover,
-  .filosofia-card:focus-within {
-    transform: translateY(-6px);
-    border-color: rgba(254,217,0,0.35);
-    box-shadow: 0 24px 70px rgba(0,0,0,0.38);
-  }
-  .filosofia-card:hover .filosofia-card-content,
-  .filosofia-card:focus-within .filosofia-card-content {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-}
+.valor-detail summary::-webkit-details-marker { display: none; }
+.valor-detail summary::after { content: '+'; color: var(--gold); font-weight: 900; }
+.valor-detail[open] summary::after { content: '−'; }
+.valor-detail p { padding: 0 14px 14px; font-size: 12.5px; line-height: 1.6; }
 
-.filosofia-card.active {
-  border-color: rgba(254,217,0,0.45);
-  box-shadow: 0 24px 70px rgba(0,0,0,0.38);
+.principios-mobile { display: none; }
+.principio-accordion {
+  background: var(--bg2);
+  border: 1px solid var(--gray3);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  overflow: hidden;
 }
-.filosofia-card.active .filosofia-card-content {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+.principio-accordion summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px;
+  color: var(--white);
+  font-weight: 900;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.filosofia-card.active .filosofia-card-close { display: flex; }
+.principio-accordion summary::-webkit-details-marker { display: none; }
+.principio-accordion summary::after { content: '+'; color: var(--gold); font-size: 20px; }
+.principio-accordion[open] summary::after { content: '−'; }
+.principio-accordion-body { padding: 0 18px 20px; }
+.principio-accordion-body p,
+.principio-accordion-body li { font-size: 14px; color: var(--gray1); line-height: 1.65; }
 
-@media (max-width: 1100px) {
-  .filosofia-grid { grid-template-columns: repeat(2, 1fr); }
-  .filosofia-card { min-height: 190px; }
+@media (max-width: 980px) {
+  .principios-layout { grid-template-columns: 1fr; }
+  .principios-tabs { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .principios-tab { grid-template-columns: 38px 1fr; }
+  .principios-tab-arrow { display: none; }
 }
 
 @media (max-width: 760px) {
   .filosofia-interactiva { margin-top: 56px; }
   .filosofia-intro { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .filosofia-grid { grid-template-columns: 1fr; }
-  .filosofia-card { min-height: 150px; padding: 22px; }
-  .filosofia-card-content { position: relative; inset: auto; margin: 18px -4px 0; border-top: 1px solid var(--gray3); padding: 18px 4px 0; max-height: 0; opacity: 0; overflow: hidden; transform: none; transition: max-height 0.35s ease, opacity 0.25s ease; background: transparent; }
-  .filosofia-card.active .filosofia-card-content { max-height: 520px; opacity: 1; overflow-y: auto; pointer-events: auto; }
-  .filosofia-card-close { display: none !important; }
-  .filosofia-card-hint::after { content: ' para desplegar'; }
+  .principios-layout { display: none; }
+  .principios-mobile { display: block; }
+  .valores-grid { grid-template-columns: 1fr; }
 }
 
 /* ──────────────────────────────
@@ -1489,6 +1567,19 @@ button { font-family: inherit; cursor: pointer; border: none; }
   font-size: 13px; color: var(--gray2);
 }
 
+
+
+/* Filtros de audiencia para agenda */
+.agenda-audience-filters { gap: 10px; }
+.agenda-audience-filters .filter-btn { min-width: 210px; text-align: center; }
+.agenda-item.type-universitaria::before { background: var(--gold); }
+.agenda-item.type-externa::before { background: var(--orange); }
+.tag-universitaria { background: rgba(254,217,0,0.12); color: var(--gold); }
+.tag-externa { background: rgba(255,138,0,0.16); color: var(--orange); }
+@media (max-width: 640px) {
+  .agenda-audience-filters { width: 100%; display: grid; grid-template-columns: 1fr; }
+  .agenda-audience-filters .filter-btn { width: 100%; min-width: 0; }
+}
 /* ──────────────────────────────
    CÁPSULA DEL TIEMPO
 ────────────────────────────── */
@@ -2762,81 +2853,102 @@ button { font-family: inherit; cursor: pointer; border: none; }
     </div>
   </div>
 
-  <div class="filosofia-interactiva reveal delay-2" id="filosofia-uvp">
+  
+  <div class="filosofia-interactiva principios-ux reveal delay-2" id="filosofia-uvp">
     <div class="filosofia-intro">
       <div>
         <span class="eyebrow">Filosofía UVP</span>
         <h2 class="section-title">Principios que guían nuestro camino</h2>
       </div>
-      <p class="section-sub" style="max-width:420px;font-size:14px;">
-        Pasa el cursor sobre cada ficha para conocer la información. En móvil, toca cada ficha para desplegarla.
+      <p class="section-sub" style="max-width:460px;font-size:14px;">
+        Selecciona cada principio para leerlo con calma. En móvil, la información se organiza como acordeón para que sea más fácil consultarla.
       </p>
     </div>
 
-    <div class="filosofia-grid" aria-label="Fichas interactivas de filosofía institucional UVP">
-      <article class="filosofia-card" tabindex="0" role="button" aria-expanded="false">
-        <button class="filosofia-card-close" type="button" aria-label="Cerrar información">×</button>
-        <div class="filosofia-card-icon">🎓</div>
-        <h3>Misión</h3>
-        <div class="filosofia-card-hint">Ver información</div>
-        <div class="filosofia-card-content">
-          <p>La Universidad del Valle de Puebla forma profesionistas emprendedores, con visión global, conciencia social y pensamiento crítico a través de un modelo educativo innovador que brinde herramientas para la realidad cambiante e impulse la vinculación con todos los sectores.</p>
-        </div>
-      </article>
+    <div class="principios-layout" aria-label="Principios institucionales UVP">
+      <div class="principios-tabs" role="tablist" aria-orientation="vertical">
+        <button class="principios-tab" type="button" role="tab" aria-selected="true" aria-controls="panel-mision" id="tab-mision" data-principio="mision">
+  <span class="principios-tab-icon">🎓</span>
+  <span><span class="principios-tab-title">Misión</span><span class="principios-tab-desc">Formación integral y vinculación</span></span>
+  <span class="principios-tab-arrow">→</span>
+</button><button class="principios-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-valores" id="tab-valores" data-principio="valores">
+  <span class="principios-tab-icon">💛</span>
+  <span><span class="principios-tab-title">Valores UVP</span><span class="principios-tab-desc">Consulta cada valor sin saturarte</span></span>
+  <span class="principios-tab-arrow">→</span>
+</button><button class="principios-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-vision" id="tab-vision" data-principio="vision">
+  <span class="principios-tab-icon">✨</span>
+  <span><span class="principios-tab-title">Visión</span><span class="principios-tab-desc">Proyección institucional hacia 2030</span></span>
+  <span class="principios-tab-arrow">→</span>
+</button><button class="principios-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-calidad" id="tab-calidad" data-principio="calidad">
+  <span class="principios-tab-icon">🏅</span>
+  <span><span class="principios-tab-title">Calidad educativa</span><span class="principios-tab-desc">Acreditaciones, certificaciones y mejora continua</span></span>
+  <span class="principios-tab-arrow">→</span>
+</button><button class="principios-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-filosofia" id="tab-filosofia" data-principio="filosofia">
+  <span class="principios-tab-icon">📘</span>
+  <span><span class="principios-tab-title">Filosofía institucional</span><span class="principios-tab-desc">Ideales que orientan la vida universitaria</span></span>
+  <span class="principios-tab-arrow">→</span>
+</button>
+      </div>
+      <div class="principios-panel-wrap">
+        <article class="principios-panel active" role="tabpanel" id="panel-mision" aria-labelledby="tab-mision" data-panel="mision">
+  <div class="principios-panel-kicker">🎓 Misión</div>
+  <h3>Misión</h3>
+  <p>La Universidad del Valle de Puebla forma profesionistas emprendedores, con visión global, conciencia social y pensamiento crítico a través de un modelo educativo innovador que brinde herramientas para la realidad cambiante e impulse la vinculación con todos los sectores.</p>
+</article><article class="principios-panel " role="tabpanel" id="panel-valores" aria-labelledby="tab-valores" data-panel="valores">
+  <div class="principios-panel-kicker">💛 Valores UVP</div>
+  <h3>Valores UVP</h3>
+  <p>Los valores UVP se consultan de forma individual para facilitar la lectura y evitar saturar la experiencia.</p>
+<div class="valores-grid">
+  <details class="valor-detail"><summary>Compasión</summary><p>Es la comprensión de la realidad, que inicia por el reconocimiento de uno mismo y, que lleva a superar la indiferencia mediante la acción de ayudar al otro por convicción y por justicia.</p></details>
+  <details class="valor-detail"><summary>Gratitud</summary><p>Es la valoración genuina y positiva de lo que se recibe y logra en el día a día, que refleja un sentimiento de satisfacción y bienestar con el entorno.</p></details>
+  <details class="valor-detail"><summary>Justicia</summary><p>Es el acto que consiste en otorgar a cada quien lo que le corresponde, de acuerdo con las leyes o normas que buscan el bien común para la construcción de una cultura de paz.</p></details>
+  <details class="valor-detail"><summary>Respeto</summary><p>Es el comportamiento que se caracteriza por la convicción de actuar conforme a la normatividad, reglas y condiciones establecidas con la intención de garantizar la sana convivencia con el entorno.</p></details>
+  <details class="valor-detail"><summary>Resiliencia</summary><p>Es la disposición para superar las circunstancias derivadas de los desafíos o situaciones adversas que generan un aprendizaje.</p></details>
+  <details class="valor-detail"><summary>Responsabilidad</summary><p>Es el comportamiento que hace responder por convicción y con sentido del deber al cumplimiento de compromisos y obligaciones en los términos y tiempos acordados.</p></details>
+  <details class="valor-detail"><summary>Equidad</summary><p>Es la actitud humana orientada a un trato imparcial que considera las características particulares de las personas, con la finalidad de lograr el equilibrio entre los integrantes de los diferentes grupos sociales.</p></details>
+</div>
+</article><article class="principios-panel " role="tabpanel" id="panel-vision" aria-labelledby="tab-vision" data-panel="vision">
+  <div class="principios-panel-kicker">✨ Visión</div>
+  <h3>Visión</h3>
+  <p>La Universidad del Valle de Puebla en 2030, será reconocida por su participación activa en la sociedad y por su modelo educativo centrado en la aplicación del conocimiento, en el marco del desarrollo de la investigación y referente de calidad por sus procesos de enseñanza.</p>
+</article><article class="principios-panel " role="tabpanel" id="panel-calidad" aria-labelledby="tab-calidad" data-panel="calidad">
+  <div class="principios-panel-kicker">🏅 Calidad educativa</div>
+  <h3>Calidad educativa</h3>
+  <p>En la Universidad del Valle de Puebla nos comprometemos a brindar servicios de calidad, cumplir con los requisitos aplicables para satisfacer las necesidades de la comunidad universitaria y partes interesadas por medio de las acreditaciones institucionales, de programas académicos y certificaciones, con la cultura de mejorar continuamente la eficacia del sistema de gestión de la calidad.</p><p class="principios-note">Este compromiso se refleja en las acreditaciones institucionales, certificaciones y evaluaciones favorables que respaldan las buenas prácticas educativas implementadas en la institución.</p>
+</article><article class="principios-panel " role="tabpanel" id="panel-filosofia" aria-labelledby="tab-filosofia" data-panel="filosofia">
+  <div class="principios-panel-kicker">📘 Filosofía institucional</div>
+  <h3>Filosofía institucional</h3>
+  <ul><li>Mantener la comunicación y la participación en nuestra comunidad universitaria.</li><li>Encaminar al hombre en la perfección de su trabajo, la verdad, la libertad, el respeto, la honorabilidad y el amor a la Patria.</li><li>Fomentar el sentido de responsabilidad, respeto y cumplimiento del deber para la creación de una sociedad justa, equitativa y de solidaridad.</li><li>Elevar el espíritu del hombre para el propio bien y el de la sociedad.</li></ul>
+</article>
+      </div>
+    </div>
 
-      <article class="filosofia-card" tabindex="0" role="button" aria-expanded="false">
-        <button class="filosofia-card-close" type="button" aria-label="Cerrar información">×</button>
-        <div class="filosofia-card-icon">💛</div>
-        <h3>Valores UVP</h3>
-        <div class="filosofia-card-hint">Ver información</div>
-        <div class="filosofia-card-content">
-          <ul>
-            <li><strong>Compasión:</strong> Es la comprensión de la realidad, que inicia por el reconocimiento de uno mismo y, que lleva a superar la indiferencia mediante la acción de ayudar al otro por convicción y por justicia.</li>
-            <li><strong>Gratitud:</strong> Es la valoración genuina y positiva de lo que se recibe y logra en el día a día, que refleja un sentimiento de satisfacción y bienestar con el entorno.</li>
-            <li><strong>Justicia:</strong> Es el acto que consiste en otorgar a cada quien lo que le corresponde, de acuerdo con las leyes o normas que buscan el bien común para la construcción de una cultura de paz.</li>
-            <li><strong>Respeto:</strong> Es el comportamiento que se caracteriza por la convicción de actuar conforme a la normatividad, reglas y condiciones establecidas con la intención de garantizar la sana convivencia con el entorno.</li>
-            <li><strong>Resiliencia:</strong> Es la disposición para superar las circunstancias derivadas de los desafíos o situaciones adversas que generan un aprendizaje.</li>
-            <li><strong>Responsabilidad:</strong> Es el comportamiento que hace responder por convicción y con sentido del deber al cumplimiento de compromisos y obligaciones en los términos y tiempos acordados.</li>
-            <li><strong>Equidad:</strong> Es la actitud humana orientada a un trato imparcial que considera las características particulares de las personas, con la finalidad de lograr el equilibrio entre los integrantes de los diferentes grupos sociales.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="filosofia-card" tabindex="0" role="button" aria-expanded="false">
-        <button class="filosofia-card-close" type="button" aria-label="Cerrar información">×</button>
-        <div class="filosofia-card-icon">✨</div>
-        <h3>Visión</h3>
-        <div class="filosofia-card-hint">Ver información</div>
-        <div class="filosofia-card-content">
-          <p>La Universidad del Valle de Puebla en 2030, será reconocida por su participación activa en la sociedad y por su modelo educativo centrado en la aplicación del conocimiento, en el marco del desarrollo de la investigación y referente de calidad por sus procesos de enseñanza.</p>
-        </div>
-      </article>
-
-      <article class="filosofia-card" tabindex="0" role="button" aria-expanded="false">
-        <button class="filosofia-card-close" type="button" aria-label="Cerrar información">×</button>
-        <div class="filosofia-card-icon">🏅</div>
-        <h3>Calidad educativa</h3>
-        <div class="filosofia-card-hint">Ver información</div>
-        <div class="filosofia-card-content">
-          <p>En la Universidad del Valle de Puebla nos comprometemos a brindar servicios de calidad, cumplir con los requisitos aplicables para satisfacer las necesidades de la comunidad universitaria y partes interesadas por medio de las acreditaciones institucionales, de programas académicos y certificaciones, con la cultura de mejorar continuamente la eficacia del sistema de gestión de la calidad.</p>
-          <p style="margin-top:10px;">El compromiso de la Universidad del Valle de Puebla con la calidad académica y la mejora continua se refleja a través de las diversas acreditaciones que posee y que respaldan las buenas prácticas educativas implementadas en la institución.</p>
-        </div>
-      </article>
-
-      <article class="filosofia-card" tabindex="0" role="button" aria-expanded="false">
-        <button class="filosofia-card-close" type="button" aria-label="Cerrar información">×</button>
-        <div class="filosofia-card-icon">📘</div>
-        <h3>Filosofía institucional</h3>
-        <div class="filosofia-card-hint">Ver información</div>
-        <div class="filosofia-card-content">
-          <ul>
-            <li>Mantener la comunicación y la participación en nuestra comunidad universitaria.</li>
-            <li>Encaminar al hombre en la perfección de su trabajo, la verdad, la libertad, el respeto, la honorabilidad y el amor a la Patria.</li>
-            <li>Fomentar el sentido de responsabilidad, respeto y cumplimiento del deber para la creación de una sociedad justa, equitativa y de solidaridad.</li>
-            <li>Elevar el espíritu del hombre para el propio bien y el de la sociedad.</li>
-          </ul>
-        </div>
-      </article>
+    <div class="principios-mobile" aria-label="Principios institucionales UVP versión móvil">
+      <details class="principio-accordion" open>
+  <summary>🎓 Misión</summary>
+  <div class="principio-accordion-body"><p>La Universidad del Valle de Puebla forma profesionistas emprendedores, con visión global, conciencia social y pensamiento crítico a través de un modelo educativo innovador que brinde herramientas para la realidad cambiante e impulse la vinculación con todos los sectores.</p></div>
+</details><details class="principio-accordion" >
+  <summary>💛 Valores UVP</summary>
+  <div class="principio-accordion-body"><p>Los valores UVP se consultan de forma individual para facilitar la lectura y evitar saturar la experiencia.</p>
+<div class="valores-grid">
+  <details class="valor-detail"><summary>Compasión</summary><p>Es la comprensión de la realidad, que inicia por el reconocimiento de uno mismo y, que lleva a superar la indiferencia mediante la acción de ayudar al otro por convicción y por justicia.</p></details>
+  <details class="valor-detail"><summary>Gratitud</summary><p>Es la valoración genuina y positiva de lo que se recibe y logra en el día a día, que refleja un sentimiento de satisfacción y bienestar con el entorno.</p></details>
+  <details class="valor-detail"><summary>Justicia</summary><p>Es el acto que consiste en otorgar a cada quien lo que le corresponde, de acuerdo con las leyes o normas que buscan el bien común para la construcción de una cultura de paz.</p></details>
+  <details class="valor-detail"><summary>Respeto</summary><p>Es el comportamiento que se caracteriza por la convicción de actuar conforme a la normatividad, reglas y condiciones establecidas con la intención de garantizar la sana convivencia con el entorno.</p></details>
+  <details class="valor-detail"><summary>Resiliencia</summary><p>Es la disposición para superar las circunstancias derivadas de los desafíos o situaciones adversas que generan un aprendizaje.</p></details>
+  <details class="valor-detail"><summary>Responsabilidad</summary><p>Es el comportamiento que hace responder por convicción y con sentido del deber al cumplimiento de compromisos y obligaciones en los términos y tiempos acordados.</p></details>
+  <details class="valor-detail"><summary>Equidad</summary><p>Es la actitud humana orientada a un trato imparcial que considera las características particulares de las personas, con la finalidad de lograr el equilibrio entre los integrantes de los diferentes grupos sociales.</p></details>
+</div></div>
+</details><details class="principio-accordion" >
+  <summary>✨ Visión</summary>
+  <div class="principio-accordion-body"><p>La Universidad del Valle de Puebla en 2030, será reconocida por su participación activa en la sociedad y por su modelo educativo centrado en la aplicación del conocimiento, en el marco del desarrollo de la investigación y referente de calidad por sus procesos de enseñanza.</p></div>
+</details><details class="principio-accordion" >
+  <summary>🏅 Calidad educativa</summary>
+  <div class="principio-accordion-body"><p>En la Universidad del Valle de Puebla nos comprometemos a brindar servicios de calidad, cumplir con los requisitos aplicables para satisfacer las necesidades de la comunidad universitaria y partes interesadas por medio de las acreditaciones institucionales, de programas académicos y certificaciones, con la cultura de mejorar continuamente la eficacia del sistema de gestión de la calidad.</p><p class="principios-note">Este compromiso se refleja en las acreditaciones institucionales, certificaciones y evaluaciones favorables que respaldan las buenas prácticas educativas implementadas en la institución.</p></div>
+</details><details class="principio-accordion" >
+  <summary>📘 Filosofía institucional</summary>
+  <div class="principio-accordion-body"><ul><li>Mantener la comunicación y la participación en nuestra comunidad universitaria.</li><li>Encaminar al hombre en la perfección de su trabajo, la verdad, la libertad, el respeto, la honorabilidad y el amor a la Patria.</li><li>Fomentar el sentido de responsabilidad, respeto y cumplimiento del deber para la creación de una sociedad justa, equitativa y de solidaridad.</li><li>Elevar el espíritu del hombre para el propio bien y el de la sociedad.</li></ul></div>
+</details>
     </div>
   </div>
 
@@ -3460,369 +3572,840 @@ button { font-family: inherit; cursor: pointer; border: none; }
         <span class="eyebrow reveal">Calendario 2026</span>
         <h2 class="section-title reveal delay-1">Agenda del Aniversario</h2>
       </div>
-      <div class="rostros-filters reveal delay-2" style="margin-bottom:0;">
-        <button class="filter-btn active" data-agenda-filter="all">Todos</button>
-        <button class="filter-btn" data-agenda-filter="academico">Académico</button>
-        <button class="filter-btn" data-agenda-filter="ceremonial">Ceremonial</button>
-        <button class="filter-btn" data-agenda-filter="cultural">Cultural</button>
-        <button class="filter-btn" data-agenda-filter="posgrados">Posgrados</button>
-        <button class="filter-btn" data-agenda-filter="bienestar">Bienestar</button>
-        <button class="filter-btn" data-agenda-filter="deportivo">Deportivo</button>
-        <button class="filter-btn" data-agenda-filter="fundacion">Fundación</button>
-        <button class="filter-btn" data-agenda-filter="vinculacion">Vinculación</button>
+      <div class="rostros-filters agenda-audience-filters reveal delay-2" style="margin-bottom:0;">
+        <button class="filter-btn active" data-agenda-filter="universitaria">Actividades comunidad universitaria</button>
+        <button class="filter-btn active" data-agenda-filter="externa">Actividades comunidad externa</button>
       </div>
     </div>
 
     <div class="agenda-list" id="agendaList">
-      <div class="agenda-item type-academico reveal" data-atype="academico" title="05 JUN 2026">
+      <div class="agenda-item type-externa reveal" data-atype="externa" title="09/05/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">09</span>
+          <span class="agenda-month">MAY</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Día de las madres</div>
+          <div class="agenda-meta-text">📍 Ágora · 🕘 9:00 a.m. – 11:00 a.m. · Administrativos</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Día de las madres')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-1" data-atype="externa" title="11/05/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">11</span>
+          <span class="agenda-month">MAY</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">XIII Copa Sable Junior</div>
+          <div class="agenda-meta-text">📍 Cancha Teocalli y Complejo Bugambilias · 🕘 Horario por confirmar · Todas las Licenciaturas | Estudio Panteras | Deportes</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: XIII Copa Sable Junior')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-2" data-atype="universitaria" title="15/05/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">15</span>
+          <span class="agenda-month">MAY</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Día del maestro</div>
+          <div class="agenda-meta-text">📍 Complejo Bugambilias · 🕘 9:00 a.m. – 12:00 p.m. · Docentes | Administrativos</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Día del maestro')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-3" data-atype="universitaria" title="25 al 26 de Mayo">
+        <div class="agenda-date-col">
+          <span class="agenda-day">25-26</span>
+          <span class="agenda-month">MAY</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Congreso de Salud</div>
+          <div class="agenda-meta-text">📍 Centro de Convenciones · 🕘 9:00 a.m. – 6:00 a.m. · División de Salud</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Congreso de Salud')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-4" data-atype="externa" title="28/05/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">28</span>
+          <span class="agenda-month">MAY</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Kilo del Libro</div>
+          <div class="agenda-meta-text">📍 Lobby Kukulcán · 🕘 11:00 a.m. – 3:00 p.m · Todas las Licenciaturas</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Kilo del Libro')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-5" data-atype="externa" title="28/05/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">28</span>
+          <span class="agenda-month">MAY</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">CREA Awards 2026</div>
+          <div class="agenda-meta-text">📍 Ágora · 🕘 3:00 pm – 5:00 pm · División de Negocios, Hospitalidad y Ciencias Sociales | Licenciatura en Mercadotecnia</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: CREA Awards 2026')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal" data-atype="universitaria" title="29/05/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">29</span>
+          <span class="agenda-month">MAY</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Rueda de Prensa: Lanzamiento Eventos 45 Aniversario</div>
+          <div class="agenda-meta-text">📍 Roof Garden Prepa · 🕘 10:00 a.m. – 12:00 p.m. · Todas las Licenciaturas | Mediático</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Rueda de Prensa: Lanzamiento Eventos 45 Aniversario')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-1" data-atype="universitaria" title="30/05/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">30</span>
+          <span class="agenda-month">MAY</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Festival de la danza &quot;Cuerpo y alma&quot;</div>
+          <div class="agenda-meta-text">📍 Auditorio Kukulcán · 🕘 10:00 a.m. – 1:00 p.m. · Estudio Panteras</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Festival de la danza &quot;Cuerpo y alma&quot;')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-2" data-atype="externa" title="30/05/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">30</span>
+          <span class="agenda-month">MAY</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Integrate a la prepa UVP</div>
+          <div class="agenda-meta-text">📍 Lugar por confirmar · 🕘 Horario por confirmar · Prepa | Admisión Agosto 2026</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Integrate a la prepa UVP')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-3" data-atype="externa" title="03/06/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">03</span>
+          <span class="agenda-month">JUN</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">“BrillARTE: Gala de Talento UVP”</div>
+          <div class="agenda-meta-text">📍 Auditorio Kukulcán · 🕘 6:00 p.m. – 8:00 p.m. · Todas las Licenciaturas | Estudio Panteras</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: “BrillARTE: Gala de Talento UVP”')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-4" data-atype="universitaria" title="05/06/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">05</span>
           <span class="agenda-month">JUN</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-academico">Académico</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Lanzamiento de la Licenciatura en Cosmetología e Imagen</div>
           <div class="agenda-meta-text">📍 Laboratorios de Maquillaje e Imagen &quot;Lumiere&quot; | Explanada Kukulcán · 🕘 10:00 a.m. – 1:00 p.m. · División de Artes y Humanidades | Licenciatura en Cosmetología e Imagen | Admisión Agosto 2026</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Lanzamiento de la Licenciatura en Cosmetología e Imagen')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-posgrados reveal delay-1" data-atype="posgrados" title="09 JUN 2026">
+      <div class="agenda-item type-externa reveal delay-5" data-atype="externa" title="8-12 de junio">
         <div class="agenda-date-col">
-          <span class="agenda-day">09</span>
+          <span class="agenda-day">08-12</span>
           <span class="agenda-month">JUN</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-posgrados">Posgrados</div>
-          <div class="agenda-title-text">Lanzamiento Online</div>
-          <div class="agenda-meta-text">📍 Ágora · 🕘 6:00 p.m. – 8:00 p.m. · División de Posgrados | Admisiones Ejecutivo</div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Festival de Cine Universitario UVP</div>
+          <div class="agenda-meta-text">📍 Auditorio Kukulcán, Ágora · 🕘 Horario por confirmar · División de Artes y Humanidades | Licenciatura en Producción y Animación</div>
         </div>
-        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Lanzamiento Online')">Ver detalles</button>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Festival de Cine Universitario UVP')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-ceremonial reveal delay-2" data-atype="ceremonial" title="10 JUN 2026">
+      <div class="agenda-item type-universitaria reveal" data-atype="universitaria" title="10/06/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">10</span>
           <span class="agenda-month">JUN</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-ceremonial">Ceremonial</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Develación: Placa CONOCER</div>
           <div class="agenda-meta-text">📍 Explanada Kukulcán · 🕘 11:00 a.m. – 1:00 p.m. · División de Posgrados</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Develación: Placa CONOCER')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-academico reveal delay-3" data-atype="academico" title="12 JUN 2026">
+      <div class="agenda-item type-universitaria reveal delay-1" data-atype="universitaria" title="12/06/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">12</span>
           <span class="agenda-month">JUN</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-academico">Académico</div>
-          <div class="agenda-title-text">Comida To Nantli y Ultima Catedra Temaktia</div>
-          <div class="agenda-meta-text">📍 Complejo Bugambilias · 🕘 2:00 p.m. | 6:00 p.m. – Por definir · Todas las Licenciaturas</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Comida To Nantli y Última Cátedra Temaktia</div>
+          <div class="agenda-meta-text">📍 Complejo Bugambilias · 🕘 2:00 pm | 6:00 p.m. · Todas las Licenciaturas</div>
         </div>
-        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Comida To Nantli y Ultima Catedra Temaktia')">Ver detalles</button>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Comida To Nantli y Última Cátedra Temaktia')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-ceremonial reveal delay-4" data-atype="ceremonial" title="19 JUN 2026">
+      <div class="agenda-item type-universitaria reveal delay-2" data-atype="universitaria" title="17/06/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">17</span>
+          <span class="agenda-month">JUN</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Alianzas que Dejan Huella</div>
+          <div class="agenda-meta-text">📍 Agora · 🕘 11:00 a.m – 1:00 p.m · Mediático| Admisiones Agosto 2026</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Alianzas que Dejan Huella')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-3" data-atype="externa" title="18/06/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">18</span>
+          <span class="agenda-month">JUN</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Free Style (Rap Científico - UVP de Ingenierías)</div>
+          <div class="agenda-meta-text">📍 Auditorio Kukulcán · 🕘 4:00p.m – 5:00p.m · División de Ingenierías</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Free Style (Rap Científico - UVP de Ingenierías)')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-4" data-atype="universitaria" title="19/06/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">19</span>
           <span class="agenda-month">JUN</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-ceremonial">Ceremonial</div>
-          <div class="agenda-title-text">Granja UVP: Aprende, Explora y Diviértete  e Inauguración de Áreas de Producción Veterinaria y Agronomia</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Granja UVP: Aprende, Explora y Diviértete e Inauguración de Áreas de Producción Veterinaria y Agronomía</div>
           <div class="agenda-meta-text">📍 Complejo Bugambilias · 🕘 10:00 a.m. – 1:00 p.m. · División de Ciencias de la Vida | Licenciatura en Agronomía y Licenciatura en Veterinaria | Admisión Agosto 2026</div>
         </div>
-        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Granja UVP: Aprende, Explora y Diviértete  e Inauguración de Áreas de Producción Veterinaria y Agronomia')">Ver detalles</button>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Granja UVP: Aprende, Explora y Diviértete e Inauguración de Áreas de Producción Veterinaria y Agronomía')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-posgrados reveal delay-5" data-atype="posgrados" title="26 JUN 2026">
+      <div class="agenda-item type-externa reveal delay-5" data-atype="externa" title="20/06/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">20</span>
+          <span class="agenda-month">JUN</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Integrate a la prepa UVP</div>
+          <div class="agenda-meta-text">📍 Lugar por confirmar · 🕘 Horario por confirmar · Prepa | Admisión Agosto 2026</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Integrate a la prepa UVP')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal" data-atype="externa" title="20/06/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">20</span>
+          <span class="agenda-month">JUN</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Día del Padre</div>
+          <div class="agenda-meta-text">📍 Ágora · 🕘 10:00 a.m. – 11:00 a.m. · Administrativos</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Día del Padre')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-1" data-atype="externa" title="26/06/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">26</span>
           <span class="agenda-month">JUN</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-posgrados">Posgrados</div>
-          <div class="agenda-title-text">Lanzamiento B-Learning</div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Día de integración</div>
+          <div class="agenda-meta-text">📍 Lugar externo · 🕘 9:00 a.m. – 6:00 p.m. · Administrativos</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Día de integración')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-2" data-atype="universitaria" title="26/06/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">26</span>
+          <span class="agenda-month">JUN</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Universo UVP: Más allá de la Pantalla</div>
           <div class="agenda-meta-text">📍 Ágora · 🕘 6:00 p.m. – 8:00 p.m. · División de Posgrados | Admisiones Ejecutivo</div>
         </div>
-        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Lanzamiento B-Learning')">Ver detalles</button>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Universo UVP: Más allá de la Pantalla')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-ceremonial reveal" data-atype="ceremonial" title="06 JUL 2026">
+      <div class="agenda-item type-universitaria reveal delay-3" data-atype="universitaria" title="06/07/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">06</span>
           <span class="agenda-month">JUL</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-ceremonial">Ceremonial</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Graduación Generación 45 Aniversario</div>
           <div class="agenda-meta-text">📍 Complejo Cultural Universitario · 🕘 7:00 a.m. – 3:00 p.m. · Todas las Licenciaturas</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Graduación Generación 45 Aniversario')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-academico reveal delay-1" data-atype="academico" title="11 JUL 2026">
+      <div class="agenda-item type-externa reveal delay-4" data-atype="externa" title="07/07/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">07</span>
+          <span class="agenda-month">JUL</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Resiliencia ante los cambios</div>
+          <div class="agenda-meta-text">📍 Aula UVP · 🕘 10:00 a.m. – 11.00 · Todas las Licenciaturas | Miyana</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Resiliencia ante los cambios')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-5" data-atype="universitaria" title="09/07/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">09</span>
+          <span class="agenda-month">JUL</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Lanzamiento B-Learning</div>
+          <div class="agenda-meta-text">📍 Ágora · 🕘 6:00 p.m. – 8:00 p.m. · División de Posgrados | Admisiones Ejecutivo</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Lanzamiento B-Learning')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal" data-atype="universitaria" title="11/07/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">11</span>
           <span class="agenda-month">JUL</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-academico">Académico</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Festival Gastronómico</div>
           <div class="agenda-meta-text">📍 Estacionamiento Complejo Teocalli · 🕘 11:00 a.m. – 8:00 p.m. · División de Negocios, Hospitalidad y Ciencias Sociales | Licenciatura en Gastronomía| Licenciatura en Administración y Gestión Turística | Admisión Agosto 2026</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Festival Gastronómico')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-ceremonial reveal delay-2" data-atype="ceremonial" title="20 JUL 2026">
+      <div class="agenda-item type-externa reveal delay-1" data-atype="externa" title="11/07/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">11</span>
+          <span class="agenda-month">JUL</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Integrate a la prepa UVP</div>
+          <div class="agenda-meta-text">📍 Lugar por confirmar · 🕘 Horario por confirmar · Prepa | Admisión Agosto 2026</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Integrate a la prepa UVP')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-2" data-atype="externa" title="15/07/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">15</span>
+          <span class="agenda-month">JUL</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Finanzas personales</div>
+          <div class="agenda-meta-text">📍 Aulas UVP · 🕘 5:00 p.m. – 6:00 p.m. · Todas las Licenciaturas | Miyana</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Finanzas personales')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-3" data-atype="externa" title="15 al 17 de julio">
+        <div class="agenda-date-col">
+          <span class="agenda-day">15-17</span>
+          <span class="agenda-month">JUL</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Especializate 2026</div>
+          <div class="agenda-meta-text">📍 Evento en línea (WEBINAR + MASTER CLASS) · 🕘 5:00p.m – 8:00p.m · División de Posgrados | Admisiones Ejecutivo</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Especializate 2026')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-4" data-atype="externa" title="17/06/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">17</span>
+          <span class="agenda-month">JUN</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Especializate 2026</div>
+          <div class="agenda-meta-text">📍 Ágora · 🕘 5:00p.m – 8:00p.m · División de Posgrados | Admisiones Ejecutivo</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Especializate 2026')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-5" data-atype="universitaria" title="20/07/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">20</span>
           <span class="agenda-month">JUL</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-ceremonial">Ceremonial</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Inauguración del Laboratorio de Ingenierias</div>
           <div class="agenda-meta-text">📍 Laboratorio de Ingenierias · 🕘 10:00 a.m. – 12:00 p.m. · División de Ingenierías | Admisión Agosto 2026</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Inauguración del Laboratorio de Ingenierias')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-ceremonial reveal delay-3" data-atype="ceremonial" title="30 JUL 2026">
+      <div class="agenda-item type-externa reveal" data-atype="externa" title="20 al 24 de julio">
+        <div class="agenda-date-col">
+          <span class="agenda-day">20-24</span>
+          <span class="agenda-month">JUL</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Semana de Controles Remotos</div>
+          <div class="agenda-meta-text">📍 Lugar por confirmar · 🕘 Horario por confirmar · Todas las Licenciaturas | Admisión Agosto 2026</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Semana de Controles Remotos')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-1" data-atype="externa" title="30/07/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">30</span>
           <span class="agenda-month">JUL</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-ceremonial">Ceremonial</div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Protocolo de titulación</div>
+          <div class="agenda-meta-text">📍 Auditorio Kukulcán · 🕘 9:00 am – 6:00 pm · Todas las Licenciaturas</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Protocolo de titulación')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-2" data-atype="universitaria" title="30/07/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">30</span>
+          <span class="agenda-month">JUL</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Inauguración Campus Tlaxcala</div>
           <div class="agenda-meta-text">📍 Campus Tlaxcala · 🕘 10:00 a.m. – 12:30 p.m. · Todas las Licenciaturas | Admisión Agosto 2026</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Inauguración Campus Tlaxcala')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-deportivo reveal delay-4" data-atype="deportivo" title="08 AGO 2026">
+      <div class="agenda-item type-universitaria reveal delay-3" data-atype="universitaria" title="08/08/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">08</span>
           <span class="agenda-month">AGO</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-deportivo">Deportivo</div>
-          <div class="agenda-title-text">Feria: Conecta con tu Salud (Revisar con la Mtra. Yanith, Deportes y Difusión Cultural y Fima de Autografos buscar equipo deportivo) Yoga masivo en las canchas. Revisar Wellness Day</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Feria: Conecta con tu Salud (Revisar con la Mtra. Yanith, Deportes y Difusión Cultural y Firma de Autógrafos buscar equipo deportivo) Yoga masivo en las canchas. Revisar Wellness Day</div>
           <div class="agenda-meta-text">📍 Estacionamiento Complejo Teocalli / Miyana · 🕘 10:00 a.m. – 4:00 p.m. · División de Salud | Centro Médico | Miyana, Gimnasio Chicáhuac, Estudio Panteras</div>
         </div>
-        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Feria: Conecta con tu Salud (Revisar con la Mtra. Yanith, Deportes y Difusión Cultural y Fima de Autografos buscar equipo deportivo) Yoga masivo en las canchas. Revisar Wellness Day')">Ver detalles</button>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Feria: Conecta con tu Salud (Revisar con la Mtra. Yanith, Deportes y Difusión Cultural y Firma de Autógrafos buscar equipo deportivo) Yoga masivo en las canchas. Revisar Wellness Day')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-ceremonial reveal delay-5" data-atype="ceremonial" title="14 AGO 2026">
+      <div class="agenda-item type-universitaria reveal delay-4" data-atype="universitaria" title="14/08/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">14</span>
           <span class="agenda-month">AGO</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-ceremonial">Ceremonial</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Mozcalti: Primera Cátedra (Puebla) e Inauguración de Complejo Bugambilias</div>
           <div class="agenda-meta-text">📍 Estacionamiento Complejo Teocalli · 🕘 9:00 a.m. – 11:00 a.m. · Todas las Licenciaturas</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Mozcalti: Primera Cátedra (Puebla) e Inauguración de Complejo Bugambilias')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-academico reveal" data-atype="academico" title="18 AGO 2026">
+      <div class="agenda-item type-universitaria reveal delay-5" data-atype="universitaria" title="18/08/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">18</span>
           <span class="agenda-month">AGO</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-academico">Académico</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Mozcalti: Primera Cátedra (Tlaxcala)</div>
           <div class="agenda-meta-text">📍 Campus Tlaxcala · 🕘 9:00 a.m. – 11:00 a.m. · Todas las Licenciaturas</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Mozcalti: Primera Cátedra (Tlaxcala)')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-academico reveal delay-1" data-atype="academico" title="20 AGO 2026">
+      <div class="agenda-item type-universitaria reveal" data-atype="universitaria" title="20/08/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">20</span>
           <span class="agenda-month">AGO</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-academico">Académico</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Rally de Bienvenida</div>
           <div class="agenda-meta-text">📍 TODOS los Complejos · 🕘 11:00 a.m. – 2:00 p.m. · Todas las Licenciaturas</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Rally de Bienvenida')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-ceremonial reveal delay-2" data-atype="ceremonial" title="09 SEP 2026">
+      <div class="agenda-item type-externa reveal delay-1" data-atype="externa" title="21/08/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">21</span>
+          <span class="agenda-month">AGO</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Feria del bienestar integral</div>
+          <div class="agenda-meta-text">📍 Aulas UVP · 🕘 9:00 a.m. – 13:00 a.m. · Todas las Licenciaturas | Miyana, Gimnasio Chicáhuac, Estudio Panteras</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Feria del bienestar integral')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-2" data-atype="universitaria" title="26/08/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">26</span>
+          <span class="agenda-month">AGO</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Cierre de la Campaña Puebla Comparte en UVP - Banco de Alimentos</div>
+          <div class="agenda-meta-text">📍 Estacionamiento Complejo Teocalli · 🕘 4:00 p.m. – 5:00 p.m. · Todas las Licenciaturas</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Cierre de la Campaña Puebla Comparte en UVP - Banco de Alimentos')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-3" data-atype="universitaria" title="28/08/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">28</span>
+          <span class="agenda-month">AGO</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Concurso para la creación del Cóctel UVP</div>
+          <div class="agenda-meta-text">📍 Lugar por confirmar · 🕘 Horario por confirmar · División de Negocios, Hospitalidad y Ciencias Sociales | Licenciatura en Gastronomía</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Concurso para la creación del Cóctel UVP')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-4" data-atype="universitaria" title="02/09/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">02</span>
+          <span class="agenda-month">SEP</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Presentación del Libro Conmemorativo por los 30 Años de Gastronomía</div>
+          <div class="agenda-meta-text">📍 Lugar por confirmar · 🕘 Horario por confirmar · División de Negocios, Hospitalidad y Ciencias Sociales | Licenciatura en Gastronomía</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Presentación del Libro Conmemorativo por los 30 Años de Gastronomía')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-5" data-atype="universitaria" title="05/09/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">05</span>
+          <span class="agenda-month">SEP</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Comida de Egresados</div>
+          <div class="agenda-meta-text">📍 Lugar por confirmar · 🕘 Horario por confirmar · Vinculación | Atención a Egresados</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Comida de Egresados')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal" data-atype="externa" title="08/09/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">08</span>
+          <span class="agenda-month">SEP</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Dia Mundial de la Fisioterapia en UVP</div>
+          <div class="agenda-meta-text">📍 Auditorio Ágora · 🕘 12:00 hrs – 17:00 hrs · División de Salud | Licenciatura en Fisioterapia</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Dia Mundial de la Fisioterapia en UVP')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-1" data-atype="universitaria" title="09/09/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">09</span>
           <span class="agenda-month">SEP</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-ceremonial">Ceremonial</div>
-          <div class="agenda-title-text">Inauguración Plaza Nezahualcóyotl y Develación del Busto del Mtro. Jaime. Apertura de capsula del tiempo</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Reinauguración Plaza Nezahualcóyotl y Develación del Busto del Mtro. Jaime. Apertura de cápsula del tiempo</div>
           <div class="agenda-meta-text">📍 Explanada Nezahualcoyotl · 🕘 12:00 p.m. – 2:00 a.m. · Todas las Licenciaturas | Mediático</div>
         </div>
-        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Inauguración Plaza Nezahualcóyotl y Develación del Busto del Mtro. Jaime. Apertura de capsula del tiempo')">Ver detalles</button>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Reinauguración Plaza Nezahualcóyotl y Develación del Busto del Mtro. Jaime. Apertura de cápsula del tiempo')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-cultural reveal delay-3" data-atype="cultural" title="10 SEP 2026">
+      <div class="agenda-item type-universitaria reveal delay-2" data-atype="universitaria" title="10/09/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">10</span>
           <span class="agenda-month">SEP</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-cultural">Cultural</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">¡UVP Late Contigo! Concurso de Porra Oficial</div>
           <div class="agenda-meta-text">📍 Auditorio Kukulcán · 🕘 2:00 p.m. – 4:00 p.m. · Todas las Licenciaturas</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: ¡UVP Late Contigo! Concurso de Porra Oficial')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-ceremonial reveal delay-4" data-atype="ceremonial" title="17 SEP 2026">
+      <div class="agenda-item type-externa reveal delay-3" data-atype="externa" title="11/09/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">11</span>
+          <span class="agenda-month">SEP</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Desafío Yoliliztli</div>
+          <div class="agenda-meta-text">📍 Cuetlaxcoapan, Kukulcán y Teocalli · 🕘 9:00 am – 12:00 pm · División de Ciencias de la Vida | Licenciatura en Agronomía, Licenciatura en Veterinaria y Licenciatura Químico Farmacobiólogo</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Desafío Yoliliztli')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-4" data-atype="externa" title="12/09/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">12</span>
+          <span class="agenda-month">SEP</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Torneo deportivo Posgrados y sistema ejecutivo</div>
+          <div class="agenda-meta-text">📍 Cancha Teocalli · 🕘 9:00 am – 12:00 pm · División de Posgrados | Admisiones Ejecutivo</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Torneo deportivo Posgrados y sistema ejecutivo')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-5" data-atype="externa" title="15/09/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">15</span>
+          <span class="agenda-month">SEP</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Kermess 15 de septiembre y concurso botana de sable</div>
+          <div class="agenda-meta-text">📍 Estacionamiento Complejo Teocalli · 🕘 1:00 pm – 4:00pm · División de Negocios, Hospitalidad y Ciencias Sociales | Licenciatura en Gastronomía</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Kermess 15 de septiembre y concurso botana de sable')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal" data-atype="universitaria" title="17/09/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">17</span>
           <span class="agenda-month">SEP</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-ceremonial">Ceremonial</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">45 Aniversario: Protocolo de Aniversario (Concierto Orquesta Sinfónica, Beca 100% Jaime Illescas López (Melissa))</div>
           <div class="agenda-meta-text">📍 Complejo Bugambilias · 🕘 11:00 a.m. – 1:00 p.m. · Todas las Licenciaturas | Mediático</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: 45 Aniversario: Protocolo de Aniversario (Concierto Orquesta Sinfónica, Beca 100% Jaime Illescas López (Melissa))')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-ceremonial reveal delay-5" data-atype="ceremonial" title="17 SEP 2026">
+      <div class="agenda-item type-universitaria reveal delay-1" data-atype="universitaria" title="17/09/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">17</span>
           <span class="agenda-month">SEP</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-ceremonial">Ceremonial</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">45 Aniversario: Cena de Gala y Aniversario de la Licenciatura en Gastronomía, Galardones a reconocidas personalidades de la sociedad</div>
           <div class="agenda-meta-text">📍 Complejo Bugambilias · 🕘 7:00 p.m. – 10:00 p.m. · Todas las Licenciaturas | Mediático</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: 45 Aniversario: Cena de Gala y Aniversario de la Licenciatura en Gastronomía, Galardones a reconocidas personalidades de la sociedad')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-fundacion reveal" data-atype="fundacion" title="17 SEP 2026">
+      <div class="agenda-item type-universitaria reveal delay-2" data-atype="universitaria" title="17/09/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">17</span>
           <span class="agenda-month">SEP</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-fundacion">Fundación</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Giving day UVP - Un día para transformar generaciones</div>
           <div class="agenda-meta-text">📍 Todos los complejos · 🕘 9:00 a.m. – 6:00 p.m. · Todas las Licenciaturas</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Giving day UVP - Un día para transformar generaciones')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-academico reveal delay-1" data-atype="academico" title="23 SEP 2026">
+      <div class="agenda-item type-externa reveal delay-3" data-atype="externa" title="19/09/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">19</span>
+          <span class="agenda-month">SEP</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Torneo deportivo</div>
+          <div class="agenda-meta-text">📍 Cancha Teocalli · 🕘 9:00 hrs – 12:00 hrs · División de Posgrados | Admisiones Ejecutivo | Deportes</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Torneo deportivo')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-4" data-atype="universitaria" title="23/09/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">23</span>
           <span class="agenda-month">SEP</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-academico">Académico</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Conferencia 45 Aniversario</div>
-          <div class="agenda-meta-text">📍 Estacionamiento Complejo Teocalli · 🕘 4:00 p.m. – 6:00 p.m. · Todas las Licenciaturas | Mediático</div>
+          <div class="agenda-meta-text">📍 Estacionamiento Complejo Teocalli · 🕘 4:00:00 p.m. – 6:00:00 p.m. · Todas las Licenciaturas | Mediático</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Conferencia 45 Aniversario')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-cultural reveal delay-2" data-atype="cultural" title="24 SEP 2026">
+      <div class="agenda-item type-universitaria reveal delay-5" data-atype="universitaria" title="24/09/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">24</span>
           <span class="agenda-month">SEP</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-cultural">Cultural</div>
-          <div class="agenda-title-text">Video Mapping 45 Años Transformando Generaciones  (Jorge Maceda) Añadir otra cosa Kermesse o otra actividad atractiva</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Video Mapping 45 Años Transformando Generaciones (Jorge Maceda) Añadir otra cosa Kermesse o otra actividad atractiva</div>
           <div class="agenda-meta-text">📍 Estacionamiento Complejo Teocalli · 🕘 08:00 p.m. – 09:00 p.m. · Todas las Licenciaturas | Mediático</div>
         </div>
-        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Video Mapping 45 Años Transformando Generaciones  (Jorge Maceda) Añadir otra cosa Kermesse o otra actividad atractiva')">Ver detalles</button>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Video Mapping 45 Años Transformando Generaciones (Jorge Maceda) Añadir otra cosa Kermesse o otra actividad atractiva')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-cultural reveal delay-3" data-atype="cultural" title="24 SEP 2026">
+      <div class="agenda-item type-universitaria reveal" data-atype="universitaria" title="24/09/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">24</span>
           <span class="agenda-month">SEP</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-cultural">Cultural</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Trazo 45: Memoria e Identidad UVP</div>
-          <div class="agenda-meta-text">📍 Explanada Nezahualcoyotl · 🕘 Por definir – Por definir · División de Artes y Humanidades | Licenciatura en Diseño y Comunicación Gráfica | Admisión Febrero 2027</div>
+          <div class="agenda-meta-text">📍 Explanada Nezahualcoyotl · 🕘 Horario por confirmar · División de Artes y Humanidades | Licenciatura en Diseño y Comunicación Gráfica | Admisión Febrero 2027</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Trazo 45: Memoria e Identidad UVP')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-cultural reveal delay-4" data-atype="cultural" title="25 SEP 2026">
+      <div class="agenda-item type-externa reveal delay-1" data-atype="externa" title="24/09/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">24</span>
+          <span class="agenda-month">SEP</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Experiencias interinstitucionales de formación docente en Puebla</div>
+          <div class="agenda-meta-text">📍 Auditorio Kukulcán · 🕘 16:00 hrs. – 18:00 hrs · Docentes</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Experiencias interinstitucionales de formación docente en Puebla')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-2" data-atype="universitaria" title="25/09/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">25</span>
           <span class="agenda-month">SEP</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-cultural">Cultural</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Comida con vecinos y Presentación Documental &quot;Raíces del Cerrito: Historia y Comunidad&quot;</div>
-          <div class="agenda-meta-text">📍 Cafetería Tláloc | Auditorio Kukulcán · 🕘 2:00 p.m. | 4:00 p.m. – 6:00 p.m. · Entorno UVP | Mediático</div>
+          <div class="agenda-meta-text">📍 Cafetería Tláloc | Auditorio Kukulcán · 🕘 2:00 p.m. | 4:00 p.m. – 6:00:00 p.m. · Entorno UVP | Mediático</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Comida con vecinos y Presentación Documental &quot;Raíces del Cerrito: Historia y Comunidad&quot;')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-posgrados reveal delay-5" data-atype="posgrados" title="26 SEP 2026">
+      <div class="agenda-item type-universitaria reveal delay-3" data-atype="universitaria" title="26/09/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">26</span>
           <span class="agenda-month">SEP</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-posgrados">Posgrados</div>
-          <div class="agenda-title-text">45 Aniversario: Cátedra Jaime Illescas López y Networking con 
-alumnos de Planes Ejecutivos</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">45 Aniversario: Cátedra Jaime Illescas López y Networking con | alumnos de Planes Ejecutivos</div>
           <div class="agenda-meta-text">📍 Ágora · 🕘 9:00 a.m. – 1:00 p.m. · División de Posgrados | Admisiones Ejecutivo</div>
         </div>
-        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: 45 Aniversario: Cátedra Jaime Illescas López y Networking con 
-alumnos de Planes Ejecutivos')">Ver detalles</button>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: 45 Aniversario: Cátedra Jaime Illescas López y Networking con | alumnos de Planes Ejecutivos')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-bienestar reveal" data-atype="bienestar" title="16 OCT 2026">
+      <div class="agenda-item type-externa reveal delay-4" data-atype="externa" title="26/09/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">26</span>
+          <span class="agenda-month">SEP</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Miradas UVP 45: Muestra de Fotoperiodismo y Documental Universitario</div>
+          <div class="agenda-meta-text">📍 Auditorio Ágora · 🕘 Horario por confirmar · División de Artes y Humanidades | Licenciatura en Ciencias de la Comunicación | Admisión Febrero 2027</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Miradas UVP 45: Muestra de Fotoperiodismo y Documental Universitario')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-5" data-atype="externa" title="14/10/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">14</span>
+          <span class="agenda-month">OCT</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Autocuidado integral para el trabajador</div>
+          <div class="agenda-meta-text">📍 Aula Miyana · 🕘 5:00 p.m. – 6:00 p.m. · Todas las Licenciaturas | Miyana, Gimnasio Chicáhuac, Estudio Panteras</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Autocuidado integral para el trabajador')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal" data-atype="universitaria" title="16/10/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">16</span>
           <span class="agenda-month">OCT</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-bienestar">Bienestar</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Día de la mente y cuerpo UVP</div>
-          <div class="agenda-meta-text">📍 Aulas UVP · 🕘 9:00 a.m. – 13:00 p.m. · Todas las Licenciaturas | Miyana, Gimnasio Chicáhuac, Estudio Panteras</div>
+          <div class="agenda-meta-text">📍 Aulas UVP · 🕘 9:00 am – 13:00 pm · Todas las Licenciaturas | Miyana, Gimnasio Chicáhuac, Estudio Panteras</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Día de la mente y cuerpo UVP')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-deportivo reveal delay-1" data-atype="deportivo" title="13 NOV 2026">
+      <div class="agenda-item type-externa reveal delay-1" data-atype="externa" title="29/10/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">29</span>
+          <span class="agenda-month">OCT</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Michi café con Sable</div>
+          <div class="agenda-meta-text">📍 Tlaxcala · 🕘 11:00 h. – 14:00 h. · Todas las Licenciaturas</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Michi café con Sable')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-2" data-atype="externa" title="30/10/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">30</span>
+          <span class="agenda-month">OCT</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Desfile del Día de Muertos (Prepa UVP), Ofrenda Institucional y Catrin y Catrina</div>
+          <div class="agenda-meta-text">📍 Lobby y Explanada Complejo Kukulcán y Calles Aledañas a UVP · 🕘 5:00 p.m. – 8:00 p.m. · Prepa | Todas las Licenciaturas | Admisión Febrero 2027</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Desfile del Día de Muertos (Prepa UVP), Ofrenda Institucional y Catrin y Catrina')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-3" data-atype="universitaria" title="30/10/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">30</span>
+          <span class="agenda-month">OCT</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
+          <div class="agenda-title-text">Catrina Monumental de Pan de Muerto</div>
+          <div class="agenda-meta-text">📍 Lugar por confirmar · 🕘 Horario por confirmar · División de Negocios, Hospitalidad y Ciencias Sociales | Licenciatura en Gastronomía</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Catrina Monumental de Pan de Muerto')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-externa reveal delay-4" data-atype="externa" title="09/11/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">09</span>
+          <span class="agenda-month">NOV</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">XIV Copa Sable Junior</div>
+          <div class="agenda-meta-text">📍 Lugar por confirmar · 🕘 Horario por confirmar · Todas las Licenciaturas | Estudio Panteras | Deportes</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: XIV Copa Sable Junior')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-5" data-atype="universitaria" title="13/11/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">13</span>
           <span class="agenda-month">NOV</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-deportivo">Deportivo</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Carrera de Go Karts UVP</div>
           <div class="agenda-meta-text">📍 Autódromo 5 Caminos, Cholula · 🕘 11:00 a.m. – 1:00 p.m. · División de Ingenierías | Admisión Febrero 2027</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Carrera de Go Karts UVP')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-deportivo reveal delay-2" data-atype="deportivo" title="21 NOV 2026">
+      <div class="agenda-item type-externa reveal" data-atype="externa" title="20/11/2026">
+        <div class="agenda-date-col">
+          <span class="agenda-day">20</span>
+          <span class="agenda-month">NOV</span>
+        </div>
+        <div>
+          <div class="agenda-type-tag tag-externa">Comunidad externa</div>
+          <div class="agenda-title-text">Bienestar ambiental UVP</div>
+          <div class="agenda-meta-text">📍 Aulas UVP · 🕘 9:00 am – 13:00 pm · Invitar a la comunidad UVP, vecinos y público externo, ya que se relacionará con las carreras de Ciencias de la Vida, para que con este contexto podamos tener captación para la admisión. Habrá conferencias, talleres, animales y un Rally</div>
+        </div>
+        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Bienestar ambiental UVP')">Ver detalles</button>
+      </div>
+      <div class="agenda-item type-universitaria reveal delay-1" data-atype="universitaria" title="21/11/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">21</span>
           <span class="agenda-month">NOV</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-deportivo">Deportivo</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Carrera Glow UVP 2026</div>
           <div class="agenda-meta-text">📍 Pendiente · 🕘 7:00 p.m. – 10:00 p.m. · Todas las Licenciaturas | Mediático</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Carrera Glow UVP 2026')">Ver detalles</button>
       </div>
-      <div class="agenda-item type-ceremonial reveal delay-3" data-atype="ceremonial" title="27 NOV 2026">
+      <div class="agenda-item type-universitaria reveal delay-2" data-atype="universitaria" title="27/11/2026">
         <div class="agenda-date-col">
           <span class="agenda-day">27</span>
           <span class="agenda-month">NOV</span>
         </div>
         <div>
-          <div class="agenda-type-tag tag-ceremonial">Ceremonial</div>
+          <div class="agenda-type-tag tag-universitaria">Comunidad universitaria</div>
           <div class="agenda-title-text">Posada y Encendido del Árbol</div>
           <div class="agenda-meta-text">📍 Estacionamiento Complejo Teocalli · 🕘 6:00 p.m. – 8:00 p.m. · Todas las Licenciaturas | Mediático</div>
         </div>
         <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Posada y Encendido del Árbol')">Ver detalles</button>
-      </div>
-      <div class="agenda-item type-vinculacion reveal delay-4" data-atype="vinculacion" title="Pendiente por Definir">
-        <div class="agenda-date-col">
-          <span class="agenda-day">Pendiente por Definir</span>
-          <span class="agenda-month"></span>
-        </div>
-        <div>
-          <div class="agenda-type-tag tag-vinculacion">Vinculación</div>
-          <div class="agenda-title-text">Comida de Egresados</div>
-          <div class="agenda-meta-text">📍 Pendiente por Definir · 🕘 Pendiente por Definir – Pendiente por Definir · Vinculación | Atención a Egresados</div>
-        </div>
-        <button class="btn-outline" style="font-size:13px;padding:11px 24px;white-space:nowrap;" onclick="showToast('Evento: Comida de Egresados')">Ver detalles</button>
       </div>
     </div>
   </div>
@@ -4238,18 +4821,21 @@ document.querySelectorAll('[data-filter]').forEach(btn => {
   });
 });
 
-// ── FILTER BUTTONS (Agenda)
+// ── FILTER BUTTONS (Agenda por audiencia)
+function applyAgendaAudienceFilters() {
+  const activeFilters = Array.from(document.querySelectorAll('[data-agenda-filter].active')).map(b => b.dataset.agendaFilter);
+  document.querySelectorAll('.agenda-item[data-atype]').forEach(item => {
+    const match = activeFilters.length === 0 || activeFilters.includes(item.dataset.atype);
+    item.style.display = match ? 'grid' : 'none';
+  });
+}
 document.querySelectorAll('[data-agenda-filter]').forEach(btn => {
   btn.addEventListener('click', function() {
-    document.querySelectorAll('[data-agenda-filter]').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    const filter = this.dataset.agendaFilter;
-    document.querySelectorAll('.agenda-item[data-atype]').forEach(item => {
-      const match = filter === 'all' || item.dataset.atype === filter;
-      item.style.display = match ? 'grid' : 'none';
-    });
+    this.classList.toggle('active');
+    applyAgendaAudienceFilters();
   });
 });
+applyAgendaAudienceFilters();
 
 // ── CÁPSULA DEL TIEMPO
 function updateCapsulaCount() {
@@ -4506,6 +5092,29 @@ if (lbImg) {
   });
 })();
 
+
+// ── PRINCIPIOS INSTITUCIONALES — TABS DESKTOP
+(function() {
+  const tabs = Array.from(document.querySelectorAll('.principios-tab'));
+  const panels = Array.from(document.querySelectorAll('.principios-panel'));
+  if (!tabs.length || !panels.length) return;
+  function activate(key, focusTab = false) {
+    tabs.forEach(tab => {
+      const selected = tab.dataset.principio === key;
+      tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+      if (selected && focusTab) tab.focus();
+    });
+    panels.forEach(panel => panel.classList.toggle('active', panel.dataset.panel === key));
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activate(tab.dataset.principio));
+    tab.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown' || event.key === 'ArrowRight') { event.preventDefault(); const next = tabs[(index + 1) % tabs.length]; activate(next.dataset.principio, true); }
+      if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') { event.preventDefault(); const prev = tabs[(index - 1 + tabs.length) % tabs.length]; activate(prev.dataset.principio, true); }
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); activate(tab.dataset.principio); }
+    });
+  });
+})();
 </script>
 
 </body>
