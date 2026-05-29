@@ -13,10 +13,7 @@
   --gold:   #fed900;
   --gold2:  #f5c800;
   --gold3:  #e8b800;
-  --orange:      #FF8A00; /* contraste AA sobre fondos oscuros */
-  --orange-dark: #C2410C; /* contraste AA con texto blanco */
-  --orange-soft: rgba(255,138,0,0.12);
-  --red:         var(--orange);
+  --red:    #e80032;
   --pur1:   #91268f;
   --pur2:   #922CEC;
   --pur3:   #B500FF;
@@ -30,7 +27,7 @@
   --gray3:  #2E2C42;
   --grad-pur: linear-gradient(135deg, var(--pur1), var(--pur2), var(--pur3));
   --grad-gold: linear-gradient(135deg, #fed900, #f5a800);
-  --grad-fire: linear-gradient(135deg, var(--orange-dark), var(--orange), var(--pur1));
+  --grad-fire: linear-gradient(135deg, var(--red), var(--pur1));
   --radius: 16px;
   --radius-sm: 10px;
   --nav-h: 72px;
@@ -421,112 +418,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
   font-weight: 600;
 }
 
-
-
-.hero-countdown {
-  width: min(720px, 100%);
-  margin: -20px auto 36px;
-  padding: 18px 22px;
-  background: linear-gradient(135deg, rgba(254,217,0,0.08), rgba(146,44,236,0.14));
-  border: 1px solid rgba(254,217,0,0.18);
-  border-radius: 22px;
-  backdrop-filter: blur(14px);
-  box-shadow: 0 18px 60px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.06);
-  animation: fade-up 1s cubic-bezier(0.22,1,0.36,1) 0.95s both;
-}
-
-.countdown-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--gold);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.countdown-kicker::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--red);
-  box-shadow: 0 0 0 0 rgba(255,138,0,0.45);
-  animation: countdown-pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes countdown-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255,138,0,0.45); }
-  50% { box-shadow: 0 0 0 8px rgba(255,138,0,0); }
-}
-
-.countdown-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.countdown-unit {
-  background: rgba(7,5,17,0.58);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px;
-  padding: 12px 8px 10px;
-  text-align: center;
-}
-
-.countdown-number {
-  display: block;
-  font-size: clamp(24px, 4vw, 38px);
-  font-weight: 900;
-  font-style: italic;
-  color: var(--gold);
-  line-height: 1;
-  letter-spacing: -1px;
-}
-
-.countdown-label {
-  display: block;
-  margin-top: 6px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.62);
-}
-
-.countdown-message {
-  color: rgba(255,255,255,0.82);
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.5;
-}
-
-.countdown-message strong {
-  color: var(--white);
-  font-weight: 800;
-}
-
-@media (max-width: 640px) {
-  .hero-countdown {
-    margin: -18px auto 30px;
-    padding: 16px 14px;
-    border-radius: 18px;
-  }
-  .countdown-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
-  .countdown-unit {
-    padding: 11px 8px 9px;
-  }
-  .countdown-message {
-    font-size: 12px;
-  }
-}
-
 .hero-ctas {
   display: flex;
   gap: 14px;
@@ -576,7 +467,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 .btn-red {
-  background: var(--orange-dark);
+  background: var(--red);
   color: var(--white);
   font-size: 14px;
   font-weight: 800;
@@ -590,7 +481,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 .btn-red:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(194,65,12,0.42);
+  box-shadow: 0 10px 30px rgba(232,0,50,0.4);
 }
 
 .hero-scroll {
@@ -802,185 +693,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
   color: var(--gray2); margin-top: 4px;
 }
 
-
-/* ──────────────────────────────
-   FICHAS FILOSOFÍA / NUESTRA ESENCIA
-────────────────────────────── */
-.filosofia-interactiva {
-  max-width: 1200px;
-  margin: 80px auto 0;
-  position: relative;
-  z-index: 2;
-}
-
-.filosofia-intro {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 28px;
-  margin-bottom: 32px;
-}
-
-.filosofia-intro .section-title {
-  max-width: 560px;
-}
-
-.filosofia-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 14px;
-}
-
-.filosofia-card {
-  background: var(--bg2);
-  border: 1px solid var(--gray3);
-  border-radius: var(--radius);
-  min-height: 210px;
-  padding: 24px;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-}
-
-.filosofia-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--grad-gold);
-  opacity: 0.9;
-}
-
-.filosofia-card:nth-child(1)::before { background: var(--pur2); }
-.filosofia-card:nth-child(2)::before { background: var(--red); }
-.filosofia-card:nth-child(3)::before { background: var(--gold); }
-.filosofia-card:nth-child(4)::before { background: var(--pur3); }
-.filosofia-card:nth-child(5)::before { background: var(--pur1); }
-
-.filosofia-card-icon {
-  width: 46px; height: 46px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  margin-bottom: 18px;
-  background: rgba(254,217,0,0.08);
-}
-
-.filosofia-card h3 {
-  font-size: 18px;
-  font-weight: 900;
-  color: var(--white);
-  line-height: 1.15;
-  margin-bottom: 10px;
-}
-
-.filosofia-card-hint {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-}
-
-.filosofia-card-content {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(13,11,26,0.98), rgba(7,5,17,0.98));
-  padding: 24px;
-  opacity: 0;
-  transform: translateY(12px);
-  pointer-events: none;
-  transition: opacity 0.28s ease, transform 0.28s ease;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--gold) transparent;
-}
-
-.filosofia-card-content::-webkit-scrollbar { width: 5px; }
-.filosofia-card-content::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
-
-.filosofia-card-content p,
-.filosofia-card-content li {
-  font-size: 12.5px;
-  color: var(--gray1);
-  line-height: 1.65;
-}
-
-.filosofia-card-content ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 0;
-  margin: 0;
-}
-
-.filosofia-card-content strong {
-  color: var(--gold);
-  font-weight: 800;
-}
-
-.filosofia-card-close {
-  display: none;
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255,255,255,0.08);
-  color: var(--white);
-  font-size: 18px;
-  z-index: 4;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .filosofia-card:hover,
-  .filosofia-card:focus-within {
-    transform: translateY(-6px);
-    border-color: rgba(254,217,0,0.35);
-    box-shadow: 0 24px 70px rgba(0,0,0,0.38);
-  }
-  .filosofia-card:hover .filosofia-card-content,
-  .filosofia-card:focus-within .filosofia-card-content {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-}
-
-.filosofia-card.active {
-  border-color: rgba(254,217,0,0.45);
-  box-shadow: 0 24px 70px rgba(0,0,0,0.38);
-}
-.filosofia-card.active .filosofia-card-content {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-.filosofia-card.active .filosofia-card-close { display: flex; }
-
-@media (max-width: 1100px) {
-  .filosofia-grid { grid-template-columns: repeat(2, 1fr); }
-  .filosofia-card { min-height: 190px; }
-}
-
-@media (max-width: 760px) {
-  .filosofia-interactiva { margin-top: 56px; }
-  .filosofia-intro { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .filosofia-grid { grid-template-columns: 1fr; }
-  .filosofia-card { min-height: 150px; padding: 22px; }
-  .filosofia-card-content { position: relative; inset: auto; margin: 18px -4px 0; border-top: 1px solid var(--gray3); padding: 18px 4px 0; max-height: 0; opacity: 0; overflow: hidden; transform: none; transition: max-height 0.35s ease, opacity 0.25s ease; background: transparent; }
-  .filosofia-card.active .filosofia-card-content { max-height: 520px; opacity: 1; overflow-y: auto; pointer-events: auto; }
-  .filosofia-card-close { display: none !important; }
-  .filosofia-card-hint::after { content: ' para desplegar'; }
-}
-
 /* ──────────────────────────────
    TIMELINE
 ────────────────────────────── */
@@ -1091,7 +803,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 .decade-80s { background: rgba(145,38,143,0.2); color: #c875c6; }
 .decade-90s { background: rgba(146,44,236,0.2); color: #a97af2; }
-.decade-00s { background: rgba(255,138,0,0.2); color: #FF8A00; }
+.decade-00s { background: rgba(232,0,50,0.2); color: #f06; }
 .decade-10s { background: rgba(254,217,0,0.15); color: var(--gold); }
 .decade-20s { background: rgba(181,0,255,0.15); color: #d966ff; }
 
@@ -1187,7 +899,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 .rostro-card:nth-child(5n+1)::before { background: linear-gradient(135deg, rgba(145,38,143,0.15), transparent); }
 .rostro-card:nth-child(5n+2)::before { background: linear-gradient(135deg, rgba(146,44,236,0.15), transparent); }
-.rostro-card:nth-child(5n+3)::before { background: linear-gradient(135deg, rgba(255,138,0,0.12), transparent); }
+.rostro-card:nth-child(5n+3)::before { background: linear-gradient(135deg, rgba(232,0,50,0.12), transparent); }
 .rostro-card:nth-child(5n+4)::before { background: linear-gradient(135deg, rgba(254,217,0,0.1), transparent); }
 .rostro-card:nth-child(5n+5)::before { background: linear-gradient(135deg, rgba(181,0,255,0.12), transparent); }
 .rostro-card:hover::before { opacity: 1; }
@@ -1207,7 +919,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 .av-1 { background: linear-gradient(135deg, #4A1B2A, #91268F); }
 .av-2 { background: linear-gradient(135deg, #1B1B4A, #922CEC); }
-.av-3 { background: linear-gradient(135deg, #4A2A1B, #FF8A00); }
+.av-3 { background: linear-gradient(135deg, #4A1B1B, #e80032); }
 .av-4 { background: linear-gradient(135deg, #2A1B4A, #B500FF); }
 .av-5 { background: linear-gradient(135deg, #1B2A4A, #0066CC); }
 .av-6 { background: linear-gradient(135deg, #1B4A2A, #008844); }
@@ -1281,7 +993,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 80% at 70% 50%, rgba(255,138,0,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 80% at 70% 50%, rgba(232,0,50,0.15) 0%, transparent 60%),
     radial-gradient(ellipse 50% 60% at 20% 50%, rgba(145,38,143,0.12) 0%, transparent 60%);
 }
 
@@ -1299,9 +1011,9 @@ button { font-family: inherit; cursor: pointer; border: none; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255,138,0,0.15);
-  border: 1px solid rgba(255,138,0,0.35);
-  color: #FFB45C;
+  background: rgba(232,0,50,0.15);
+  border: 1px solid rgba(232,0,50,0.3);
+  color: #ff4466;
   padding: 6px 16px;
   border-radius: 100px;
   font-size: 11px; font-weight: 700;
@@ -1361,13 +1073,13 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .evento-date-badge {
   position: absolute;
   top: 24px; right: 24px;
-  background: var(--orange-dark);
+  background: var(--red);
   color: var(--white);
   padding: 16px 20px;
   border-radius: var(--radius-sm);
   text-align: center;
   min-width: 80px;
-  box-shadow: 0 8px 24px rgba(194,65,12,0.42);
+  box-shadow: 0 8px 24px rgba(232,0,50,0.4);
 }
 
 .evento-date-badge .day {
@@ -1463,7 +1175,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 .tag-academico { background: rgba(146,44,236,0.15); color: #a97af2; }
-.tag-cultural  { background: rgba(255,138,0,0.12); color: #FF8A00; }
+.tag-cultural  { background: rgba(232,0,50,0.12); color: #f06; }
 .tag-deportivo { background: rgba(0,184,116,0.12); color: #00d98a; }
 .tag-ceremonial{ background: rgba(254,217,0,0.12); color: var(--gold); }
 .tag-live      { background: rgba(181,0,255,0.12); color: #cc66ff; }
@@ -1680,7 +1392,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .swag-preview.bg-1 { background: linear-gradient(135deg, var(--bg), #1A1030, #2A0A50); }
 .swag-preview.bg-2 { background: linear-gradient(135deg, #0A1A10, #0A3020, var(--bg)); }
 .swag-preview.bg-3 { background: linear-gradient(135deg, #1A0A20, var(--pur1), #2A0A30); }
-.swag-preview.bg-4 { background: linear-gradient(135deg, #1A1008, var(--red), #1A1008); }
+.swag-preview.bg-4 { background: linear-gradient(135deg, #1A0808, var(--red), #1A0808); }
 
 .swag-preview .mock-phone {
   width: 70px; height: 130px;
@@ -1818,7 +1530,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 .fi-1 { background: rgba(146,44,236,0.15); }
 .fi-2 { background: rgba(254,217,0,0.1); }
-.fi-3 { background: rgba(255,138,0,0.12); }
+.fi-3 { background: rgba(232,0,50,0.12); }
 .fi-4 { background: rgba(181,0,255,0.12); }
 .fi-5 { background: rgba(145,38,143,0.15); }
 .fi-6 { background: rgba(254,217,0,0.08); }
@@ -2479,33 +2191,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
       y transformando vidas en Puebla y el mundo.
     </p>
 
-
-
-    <div class="hero-countdown" aria-label="Cuenta regresiva al evento principal UVP 45">
-      <div class="countdown-kicker">Evento principal · 17 septiembre 2026 · 11:00 hrs</div>
-      <div class="countdown-grid" id="countdownUVP" data-event-date="2026-09-17T11:00:00-06:00">
-        <div class="countdown-unit">
-          <span class="countdown-number" id="countdownDays">000</span>
-          <span class="countdown-label">Días</span>
-        </div>
-        <div class="countdown-unit">
-          <span class="countdown-number" id="countdownHours">00</span>
-          <span class="countdown-label">Horas</span>
-        </div>
-        <div class="countdown-unit">
-          <span class="countdown-number" id="countdownMinutes">00</span>
-          <span class="countdown-label">Minutos</span>
-        </div>
-        <div class="countdown-unit">
-          <span class="countdown-number" id="countdownSeconds">00</span>
-          <span class="countdown-label">Segundos</span>
-        </div>
-      </div>
-      <div class="countdown-message" id="countdownMessage">
-        La cuenta regresiva al <strong>Gran Evento UVP 45</strong> ya comenzó. Nos vemos para celebrar 45 años de historia, comunidad y transformación.
-      </div>
-    </div>
-
     <div class="hero-ctas">
       <a href="#historia" class="btn-primary">
         Explora nuestra historia
@@ -2761,85 +2446,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
       </div>
     </div>
   </div>
-
-  <div class="filosofia-interactiva reveal delay-2" id="filosofia-uvp">
-    <div class="filosofia-intro">
-      <div>
-        <span class="eyebrow">Filosofía UVP</span>
-        <h2 class="section-title">Principios que guían nuestro camino</h2>
-      </div>
-      <p class="section-sub" style="max-width:420px;font-size:14px;">
-        Pasa el cursor sobre cada ficha para conocer la información. En móvil, toca cada ficha para desplegarla.
-      </p>
-    </div>
-
-    <div class="filosofia-grid" aria-label="Fichas interactivas de filosofía institucional UVP">
-      <article class="filosofia-card" tabindex="0" role="button" aria-expanded="false">
-        <button class="filosofia-card-close" type="button" aria-label="Cerrar información">×</button>
-        <div class="filosofia-card-icon">🎓</div>
-        <h3>Misión</h3>
-        <div class="filosofia-card-hint">Ver información</div>
-        <div class="filosofia-card-content">
-          <p>La Universidad del Valle de Puebla forma profesionistas emprendedores, con visión global, conciencia social y pensamiento crítico a través de un modelo educativo innovador que brinde herramientas para la realidad cambiante e impulse la vinculación con todos los sectores.</p>
-        </div>
-      </article>
-
-      <article class="filosofia-card" tabindex="0" role="button" aria-expanded="false">
-        <button class="filosofia-card-close" type="button" aria-label="Cerrar información">×</button>
-        <div class="filosofia-card-icon">💛</div>
-        <h3>Valores UVP</h3>
-        <div class="filosofia-card-hint">Ver información</div>
-        <div class="filosofia-card-content">
-          <ul>
-            <li><strong>Compasión:</strong> Es la comprensión de la realidad, que inicia por el reconocimiento de uno mismo y, que lleva a superar la indiferencia mediante la acción de ayudar al otro por convicción y por justicia.</li>
-            <li><strong>Gratitud:</strong> Es la valoración genuina y positiva de lo que se recibe y logra en el día a día, que refleja un sentimiento de satisfacción y bienestar con el entorno.</li>
-            <li><strong>Justicia:</strong> Es el acto que consiste en otorgar a cada quien lo que le corresponde, de acuerdo con las leyes o normas que buscan el bien común para la construcción de una cultura de paz.</li>
-            <li><strong>Respeto:</strong> Es el comportamiento que se caracteriza por la convicción de actuar conforme a la normatividad, reglas y condiciones establecidas con la intención de garantizar la sana convivencia con el entorno.</li>
-            <li><strong>Resiliencia:</strong> Es la disposición para superar las circunstancias derivadas de los desafíos o situaciones adversas que generan un aprendizaje.</li>
-            <li><strong>Responsabilidad:</strong> Es el comportamiento que hace responder por convicción y con sentido del deber al cumplimiento de compromisos y obligaciones en los términos y tiempos acordados.</li>
-            <li><strong>Equidad:</strong> Es la actitud humana orientada a un trato imparcial que considera las características particulares de las personas, con la finalidad de lograr el equilibrio entre los integrantes de los diferentes grupos sociales.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="filosofia-card" tabindex="0" role="button" aria-expanded="false">
-        <button class="filosofia-card-close" type="button" aria-label="Cerrar información">×</button>
-        <div class="filosofia-card-icon">✨</div>
-        <h3>Visión</h3>
-        <div class="filosofia-card-hint">Ver información</div>
-        <div class="filosofia-card-content">
-          <p>La Universidad del Valle de Puebla en 2030, será reconocida por su participación activa en la sociedad y por su modelo educativo centrado en la aplicación del conocimiento, en el marco del desarrollo de la investigación y referente de calidad por sus procesos de enseñanza.</p>
-        </div>
-      </article>
-
-      <article class="filosofia-card" tabindex="0" role="button" aria-expanded="false">
-        <button class="filosofia-card-close" type="button" aria-label="Cerrar información">×</button>
-        <div class="filosofia-card-icon">🏅</div>
-        <h3>Calidad educativa</h3>
-        <div class="filosofia-card-hint">Ver información</div>
-        <div class="filosofia-card-content">
-          <p>En la Universidad del Valle de Puebla nos comprometemos a brindar servicios de calidad, cumplir con los requisitos aplicables para satisfacer las necesidades de la comunidad universitaria y partes interesadas por medio de las acreditaciones institucionales, de programas académicos y certificaciones, con la cultura de mejorar continuamente la eficacia del sistema de gestión de la calidad.</p>
-          <p style="margin-top:10px;">El compromiso de la Universidad del Valle de Puebla con la calidad académica y la mejora continua se refleja a través de las diversas acreditaciones que posee y que respaldan las buenas prácticas educativas implementadas en la institución.</p>
-        </div>
-      </article>
-
-      <article class="filosofia-card" tabindex="0" role="button" aria-expanded="false">
-        <button class="filosofia-card-close" type="button" aria-label="Cerrar información">×</button>
-        <div class="filosofia-card-icon">📘</div>
-        <h3>Filosofía institucional</h3>
-        <div class="filosofia-card-hint">Ver información</div>
-        <div class="filosofia-card-content">
-          <ul>
-            <li>Mantener la comunicación y la participación en nuestra comunidad universitaria.</li>
-            <li>Encaminar al hombre en la perfección de su trabajo, la verdad, la libertad, el respeto, la honorabilidad y el amor a la Patria.</li>
-            <li>Fomentar el sentido de responsabilidad, respeto y cumplimiento del deber para la creación de una sociedad justa, equitativa y de solidaridad.</li>
-            <li>Elevar el espíritu del hombre para el propio bien y el de la sociedad.</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </div>
-
 </section>
 
 <!-- ═══════════════════════════════
@@ -4086,57 +3692,10 @@ function closeMobileNav() {
   menuBtn.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = '1'; });
 }
 
-
-// ── CUENTA REGRESIVA HERO — Evento principal UVP 45
-(function() {
-  const countdown = document.getElementById('countdownUVP');
-  if (!countdown) return;
-
-  const target = new Date(countdown.dataset.eventDate).getTime();
-  const daysEl = document.getElementById('countdownDays');
-  const hoursEl = document.getElementById('countdownHours');
-  const minutesEl = document.getElementById('countdownMinutes');
-  const secondsEl = document.getElementById('countdownSeconds');
-  const messageEl = document.getElementById('countdownMessage');
-
-  function pad(value, size = 2) {
-    return String(value).padStart(size, '0');
-  }
-
-  function updateCountdown() {
-    const now = Date.now();
-    const diff = target - now;
-
-    if (diff <= 0) {
-      daysEl.textContent = '000';
-      hoursEl.textContent = '00';
-      minutesEl.textContent = '00';
-      secondsEl.textContent = '00';
-      messageEl.innerHTML = '<strong>¡Llegó el Gran Evento UVP 45!</strong> Hoy celebramos 45 años de historia, comunidad y transformación.';
-      clearInterval(timer);
-      return;
-    }
-
-    const totalSeconds = Math.floor(diff / 1000);
-    const days = Math.floor(totalSeconds / 86400);
-    const hours = Math.floor((totalSeconds % 86400) / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-
-    daysEl.textContent = pad(days, 3);
-    hoursEl.textContent = pad(hours);
-    minutesEl.textContent = pad(minutes);
-    secondsEl.textContent = pad(seconds);
-  }
-
-  updateCountdown();
-  const timer = setInterval(updateCountdown, 1000);
-})();
-
 // ── HERO PARTICLES
 (function() {
   const container = document.getElementById('heroParticles');
-  const colors = ['#fed900','#922CEC','#FF8A00','#B500FF','#ffffff','#91268f'];
+  const colors = ['#fed900','#922CEC','#e80032','#B500FF','#ffffff','#91268f'];
   for (let i = 0; i < 25; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
@@ -4263,7 +3822,7 @@ function sendCapsula() {
   const btn = document.querySelector('.capsula-submit');
   if (!ta.value.trim()) {
     ta.focus();
-    ta.style.borderColor = '#C2410C';
+    ta.style.borderColor = '#e80032';
     setTimeout(() => ta.style.borderColor = '', 1500);
     return;
   }
@@ -4459,51 +4018,6 @@ if (lbImg) {
   }, { passive: true });
 
   init();
-})();
-
-
-// ── FICHAS FILOSOFÍA UVP — mobile/touch toggle
-(function() {
-  const cards = Array.from(document.querySelectorAll('.filosofia-card'));
-  if (!cards.length) return;
-
-  function closeCards(except) {
-    cards.forEach(card => {
-      if (card !== except) {
-        card.classList.remove('active');
-        card.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
-
-  cards.forEach(card => {
-    card.addEventListener('click', (event) => {
-      if (event.target.classList.contains('filosofia-card-close')) {
-        card.classList.remove('active');
-        card.setAttribute('aria-expanded', 'false');
-        event.stopPropagation();
-        return;
-      }
-      closeCards(card);
-      const active = card.classList.toggle('active');
-      card.setAttribute('aria-expanded', active ? 'true' : 'false');
-    });
-
-    card.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        card.click();
-      }
-      if (event.key === 'Escape') {
-        card.classList.remove('active');
-        card.setAttribute('aria-expanded', 'false');
-      }
-    });
-  });
-
-  document.addEventListener('click', (event) => {
-    if (!event.target.closest('.filosofia-card')) closeCards();
-  });
 })();
 
 </script>
